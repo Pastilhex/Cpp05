@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:01:20 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/06 17:22:25 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:08:57 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ const char * Bureaucrat::GradeTooLowException::what() const throw() {
 	return ("Grade to low!");
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& original) {
-	*this = original;
+Bureaucrat::Bureaucrat(const Bureaucrat& original) : _name(original._name) {
+	this->_grade = original._grade;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& value) {
@@ -59,11 +59,9 @@ std::ostream& operator<<(std::ostream& o, Bureaucrat& value){
 }
 
 void Bureaucrat::incGrade() {
-	int inc = getGrade();
-	this->_grade -= inc--;
+	this->_grade--;
 }
 
 void Bureaucrat::decGrade() {
-	int dec = getGrade();
-	this->_grade += dec++;
+	this->_grade++;
 }
