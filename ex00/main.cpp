@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:00:49 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/07 19:05:33 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:11:15 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,31 @@ int main(void)
 		std::cout  << error.what() << std::endl;
 	}
 	
+	try
+	{
+		Bureaucrat obj("ivo", 151);
+	}
+	catch (const Bureaucrat::GradeTooHighException& error)
+	{
+		std::cout  << error.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException& error)
+	{
+		std::cout  << error.what() << std::endl;
+	}
 
-	// try
-	// {
-	// 	Bureaucrat obj1("ivo", 151);
-	// }
-	// catch (const char * txt)
-	// {
-	// 	std::cout << "Bureaucrat::" << txt << std::endl;
-	// }
+	try
+	{
+		Bureaucrat obj("ivo", 0);
+	}
+	catch (const Bureaucrat::GradeTooHighException& error)
+	{
+		std::cout  << error.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException& error)
+	{
+		std::cout  << error.what() << std::endl;
+	}
+	
 	return 0;
 }
