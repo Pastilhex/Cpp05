@@ -6,11 +6,13 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:01:20 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/07 19:22:59 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:21:28 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+
 
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150) {}
 
@@ -49,7 +51,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& value) {
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream& o, Bureaucrat& value){
+std::ostream& operator<<(std::ostream& o, Bureaucrat& value) {
 	o << value.getName() << ", bureaucrat grade " << value.getGrade();
 	return o;
 }
@@ -60,4 +62,11 @@ void Bureaucrat::incGrade() {
 
 void Bureaucrat::decGrade() {
 	this->_grade++;
+}
+
+void Bureaucrat::signForm(Form &formObj) {
+	if (formObj.getIsSigned())
+		std::cout << this->getName() << " signed " << formObj.getName() << std::endl;
+	else
+		std::cout << this->getName() << " couldn't sign " << formObj.getName() << " because grade it's to low!" << std::endl;
 }
