@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:37:40 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/08 14:51:55 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:39:39 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ AForm::AForm(std::string name, const int gradeToSign, const int gradeToExecute) 
 AForm::~AForm() {}
 
 std::ostream& operator<<(std::ostream& o, AForm& value) {
-    o << value.getName() << " "
+    o << value.getName() << " " 
       << (value.getIsSigned() ? "Signed" : "Not signed") << " "
       << "Grade to sign: " << value.getGradeToSign() << " "
       << "Grade to execute: " << value.getGradeToExecute();
@@ -38,18 +38,28 @@ std::string AForm::getName() {
 	return this->_name;
 }
 
-bool AForm::getIsSigned() {
+bool AForm::getIsSigned() const {
 	return this->_isSigned;
 }
 
-int AForm::getGradeToSign() {
+int AForm::getGradeToSign() const {
 	return this->_gradeToSign;
 }
 
-int AForm::getGradeToExecute() {
+int AForm::getGradeToExecute() const {
 	return this->_gradeToExecute;
 }
 
-void AForm::setIsSigned(bool isSigned) {
-	this->_isSigned = isSigned;
+void AForm::beSigned(Bureaucrat & obj) {
+	try
+	{
+		if (obj.getGrade() <= this->getGradeToSign())
+			this->_isSigned = true;
+		else
+			throw AForm::GradeTooLowException();
+	}
+ 	catch(const AForm::GradeTooLowException& error)
+	{
+		std::cout  << error.what() << std::endl;
+	}
 }

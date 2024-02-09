@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:37:30 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/08 14:52:03 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:28:47 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "Bureaucrat.hpp"
 #include <iostream>
+#include <fstream>
 #include <string>
 
 class AForm {
@@ -24,12 +25,9 @@ private:
 	const int _gradeToSign;
 	const int _gradeToExecute;
 public:
-	virtual std::string getName() = 0;
-	virtual bool getIsSigned() = 0;
-	void setIsSigned(bool isSigned);
-	virtual int getGradeToSign() = 0;
-	virtual int getGradeToExecute() = 0;
-	virtual void beSigned(Bureaucrat &obj) = 0;
+	AForm();
+	AForm(std::string name, const int _gradeToSign, const int _gradeToExecute);
+	~AForm();
 	class GradeTooHighException : public std::exception {
 		public:
 			virtual const char* what() const throw();	
@@ -38,9 +36,13 @@ public:
 		public:
 			virtual const char* what() const throw();
 	};
-	AForm();
-	AForm(std::string name, const int _gradeToSign, const int _gradeToExecute);
-	~AForm();
+	std::string getName();
+	bool getIsSigned() const;
+	int getGradeToSign() const;
+	int getGradeToExecute() const;
+	void beSigned(Bureaucrat &obj);
+	virtual void execute(Bureaucrat const & executor) const = 0;
+	virtual void executeAction() const = 0;
 };
 
 std::ostream& operator<<(std::ostream& o, AForm& value);

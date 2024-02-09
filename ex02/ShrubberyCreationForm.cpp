@@ -6,29 +6,17 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 11:02:04 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/08 14:50:11 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:46:07 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm() {}
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target)  : AForm("Shrubbery", 135, 147) {
+	this->_target = target;	
+}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
-
-void ShrubberyCreationForm::beSigned(Bureaucrat & obj) {
-	try
-	{
-		if (obj.getGrade() <= this->getGradeToSign())
-			this->_isSigned = true;
-		else
-			throw ShrubberyCreationForm::GradeTooLowException();
-	}
- 	catch(const ShrubberyCreationForm::GradeTooLowException& error)
-	{
-		std::cout  << error.what() << std::endl;
-	}
-}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& original) : AForm() {
 	*this = original;
@@ -40,19 +28,36 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return *this;
 }
 
-std::string ShrubberyCreationForm::getName() {
-	return this->getName();
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
+	try {
+		if (this->getIsSigned())
+			if (executor.getGrade() <= this->getGradeToSign())
+				executor.executeForm(*this);
+			else
+				throw GradeTooLowException();
+		else
+			throw "Form is not signed!";
+	}
+	catch (const Bureaucrat::GradeTooLowException& error) {
+		std::cout  << error.what() << std::endl;
+	}
 }
 
-bool ShrubberyCreationForm::getIsSigned() {
-	return this->getIsSigned();
+void ShrubberyCreationForm::executeAction() const {
+	std::ofstream thisFile(this->_target);
+	if (thisFile.is_open()) {
+		thisFile << "               ,@@@@@@@,";
+		thisFile << "       ,,,.   ,@@@@@@/@@,  .oo8888o.";
+		thisFile << "    ,&&&&%&&%,@@@@@/@@@@@@,8888\\88/8o";
+		thisFile << "   ,%&&&&&%&&%,@@@@@@@/@@@88\\88888/88'";
+		thisFile << "   %&&%&%&/%&&%@@@@@/ /@@@88888\\88888'";
+		thisFile << "   %&&%/ %&&&&&@@@ V /@@' `88\\8 `/88'";
+		thisFile << "   `&%\\ ` /%&'    |.|        \\ '|8'";
+		thisFile << "       |o|        | |         | |";
+		thisFile << "       |.|        | |         | |";
+		thisFile << "______/ ._\\//_/__/  ,\\_//__\\/.  \\______";
+		thisFile.close();
+	}
+	else
+		std::cout << "Error opening file!" << std::endl;
 }
-
-int ShrubberyCreationForm::getGradeToSign() {
-	return this->getGradeToSign();
-}
-
-int ShrubberyCreationForm::getGradeToExecute() {
-	return this->getGradeToExecute();
-}
-

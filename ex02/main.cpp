@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:00:49 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/08 13:41:59 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:47:51 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,12 @@ int main(void)
 	try
 	{
 		Bureaucrat obj("Ivo", 74);
-		//obj.decGrade();
-		// std::cout << obj << std::endl;
-
-
-		ShrubberyCreationForm formObj("ivoForm", 74, 76);
+		ShrubberyCreationForm formObj("Shrubbery House");
+	
 		formObj.beSigned(obj);
 		obj.signForm(formObj);
-		std::cout << formObj << std::endl;
+
+		formObj.execute(obj);
 	}
 	catch (const Bureaucrat::GradeTooHighException& error)
 	{

@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:01:20 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/08 11:57:44 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:27:39 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ std::string Bureaucrat::getName() {
     return this->_name;
 }
 
-int Bureaucrat::getGrade() {
+int Bureaucrat::getGrade() const {
     return this->_grade;
 }
 
@@ -68,4 +68,8 @@ void Bureaucrat::signForm(AForm &formObj) {
 		std::cout << this->getName() << " signed " << formObj.getName() << std::endl;
 	else
 		std::cout << this->getName() << " couldn't sign " << formObj.getName() << " because grade it's to low!" << std::endl;
+}
+
+void Bureaucrat::executeForm(AForm const & form) const {
+	form.executeAction();
 }
