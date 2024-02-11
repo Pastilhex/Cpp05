@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:37:30 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/09 13:28:47 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:20:19 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ public:
 		public:
 			virtual const char* what() const throw();
 	};
-	std::string getName();
+	std::string getName() const;
 	bool getIsSigned() const;
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
 	void beSigned(Bureaucrat &obj);
 	virtual void execute(Bureaucrat const & executor) const = 0;
-	virtual void executeAction() const = 0;
+	virtual void executeAction(Bureaucrat const & executor) const = 0;
 };
 
 std::ostream& operator<<(std::ostream& o, AForm& value);

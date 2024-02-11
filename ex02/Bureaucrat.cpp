@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:01:20 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/09 13:27:39 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:19:06 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
 
 Bureaucrat::~Bureaucrat() {}
 
-std::string Bureaucrat::getName() {
+std::string Bureaucrat::getName() const {
     return this->_name;
 }
 
@@ -71,5 +71,5 @@ void Bureaucrat::signForm(AForm &formObj) {
 }
 
 void Bureaucrat::executeForm(AForm const & form) const {
-	form.executeAction();
+	form.executeAction(*this);
 }

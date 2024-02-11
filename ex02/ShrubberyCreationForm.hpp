@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 11:02:06 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/09 13:30:15 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:45:40 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ public:
 	ShrubberyCreationForm(const ShrubberyCreationForm& original);
 
 	void execute(Bureaucrat const & executor) const;
-	void executeAction() const;
+	void executeAction(Bureaucrat const & executor) const;
 };

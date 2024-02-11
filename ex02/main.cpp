@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:00:49 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/09 13:47:51 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/11 14:43:04 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int main(void)
 {
 	try
 	{
-		Bureaucrat obj("Ivo", 74);
-		ShrubberyCreationForm formObj("Shrubbery House");
+		Bureaucrat obj("Ivo", 146);
+		ShrubberyCreationForm formObj("Shrubbery_House");
 	
 		formObj.beSigned(obj);
 		obj.signForm(formObj);
-
 		formObj.execute(obj);
+		obj.executeForm(formObj);
 	}
 	catch (const Bureaucrat::GradeTooHighException& error)
 	{

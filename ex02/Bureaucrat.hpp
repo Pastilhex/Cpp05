@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:01:17 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/09 11:53:23 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:17:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ public:
 			virtual const char* what() const throw();
 	};
 
-	std::string getName();
+	std::string getName() const;
 	int getGrade() const;
 	void incGrade();
 	void decGrade();

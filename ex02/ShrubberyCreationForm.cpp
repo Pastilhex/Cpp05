@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 11:02:04 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/09 13:46:07 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:20:09 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target)  : AForm("Shrubbery", 135, 147) {
-	this->_target = target;	
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target)  : AForm("Shrubbery", 145, 137) {
+	this->_target = target;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
@@ -31,10 +31,10 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	try {
 		if (this->getIsSigned())
-			if (executor.getGrade() <= this->getGradeToSign())
+			if (executor.getGrade() >= this->getGradeToSign())
 				executor.executeForm(*this);
 			else
-				throw GradeTooLowException();
+				throw Bureaucrat::GradeTooLowException();
 		else
 			throw "Form is not signed!";
 	}
@@ -43,21 +43,38 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	}
 }
 
-void ShrubberyCreationForm::executeAction() const {
-	std::ofstream thisFile(this->_target);
-	if (thisFile.is_open()) {
-		thisFile << "               ,@@@@@@@,";
-		thisFile << "       ,,,.   ,@@@@@@/@@,  .oo8888o.";
-		thisFile << "    ,&&&&%&&%,@@@@@/@@@@@@,8888\\88/8o";
-		thisFile << "   ,%&&&&&%&&%,@@@@@@@/@@@88\\88888/88'";
-		thisFile << "   %&&%&%&/%&&%@@@@@/ /@@@88888\\88888'";
-		thisFile << "   %&&%/ %&&&&&@@@ V /@@' `88\\8 `/88'";
-		thisFile << "   `&%\\ ` /%&'    |.|        \\ '|8'";
-		thisFile << "       |o|        | |         | |";
-		thisFile << "       |.|        | |         | |";
-		thisFile << "______/ ._\\//_/__/  ,\\_//__\\/.  \\______";
-		thisFile.close();
+void ShrubberyCreationForm::executeAction(Bureaucrat const & executor) const {
+	try {
+		if (this->getIsSigned())
+		{
+			if (executor.getGrade() >= this->getGradeToExecute())
+			{
+				std::ofstream thisFile(this->_target.c_str());
+				if (thisFile.is_open())
+				{
+					thisFile << "               ,@@@@@@@," << std::endl;
+					thisFile << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
+					thisFile << "    ,&&&&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
+					thisFile << "   ,%&&&&&%&&%,@@@@@@@/@@@88\\88888/88'" << std::endl;
+					thisFile << "   %&&%&%&/%&&%@@@@@/ /@@@88888\\88888'" << std::endl;
+					thisFile << "   %&&%/ %&&&&&@@@ V /@@' `88\\8 `/88'" << std::endl;
+					thisFile << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
+					thisFile << "       |o|        | |         | |" << std::endl;
+					thisFile << "       |.|        | |         | |" << std::endl;
+					thisFile << "___vV_/ ._V/_Vv/_/  ,\\_//__\\v/.  \\______" << std::endl;
+					thisFile.close();
+				}
+				else
+					std::cout << "Error opening file!" << std::endl;
+				std::cout << executor.getName() << " executed " <<  this->getName() << std::endl;
+			}
+			else
+				throw GradeTooLowException();
+		}
+		else
+			throw "Shrubbery Form not signed!";
 	}
-	else
-		std::cout << "Error opening file!" << std::endl;
+	catch (const Bureaucrat::GradeTooLowException& error) {
+		std::cout  << error.what() << std::endl;
+	}	
 }
