@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 11:02:06 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/10 17:45:40 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/11 17:14:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ public:
 	ShrubberyCreationForm(const ShrubberyCreationForm& original);
 
 	void execute(Bureaucrat const & executor) const;
-	void executeAction(Bureaucrat const & executor) const;
 };

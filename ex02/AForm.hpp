@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:37:30 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/11 15:20:19 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/11 16:08:36 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ public:
 	int getGradeToExecute() const;
 	void beSigned(Bureaucrat &obj);
 	virtual void execute(Bureaucrat const & executor) const = 0;
-	virtual void executeAction(Bureaucrat const & executor) const = 0;
 };
 
 std::ostream& operator<<(std::ostream& o, AForm& value);

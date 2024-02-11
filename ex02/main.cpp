@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:00:49 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/11 14:43:04 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/11 18:25:05 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,21 @@ int main(void)
 	try
 	{
 		Bureaucrat obj("Ivo", 146);
-		ShrubberyCreationForm formObj("Shrubbery_House");
-	
-		formObj.beSigned(obj);
-		obj.signForm(formObj);
-		formObj.execute(obj);
-		obj.executeForm(formObj);
+		ShrubberyCreationForm shrubberyForm("Shrubbery_House");
+		RobotomyRequestForm robotForm("Jarbas");
+		PresidentialPardonForm pardonForm("Joao");
+
+		pardonForm.beSigned(obj);
+		obj.signForm(pardonForm);
+		pardonForm.execute(obj);
+
+		robotForm.beSigned(obj);
+		obj.signForm(robotForm);
+		robotForm.execute(obj);
+
+		shrubberyForm.beSigned(obj);
+		obj.signForm(shrubberyForm);
+		shrubberyForm.execute(obj);
 	}
 	catch (const Bureaucrat::GradeTooHighException& error)
 	{

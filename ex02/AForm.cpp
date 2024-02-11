@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:37:40 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/11 15:20:31 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/11 17:11:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,8 @@ int AForm::getGradeToExecute() const {
 }
 
 void AForm::beSigned(Bureaucrat & obj) {
-	try
-	{
-		if (obj.getGrade() >= this->getGradeToSign())
-			this->_isSigned = true;
-		else
-			throw AForm::GradeTooLowException();
-	}
- 	catch(const AForm::GradeTooLowException& error)
-	{
-		std::cout  << error.what() << std::endl;
-	}
+	if (obj.getGrade() >= this->getGradeToSign())
+		this->_isSigned = true;
+	else
+		throw Bureaucrat::GradeTooLowException();
 }

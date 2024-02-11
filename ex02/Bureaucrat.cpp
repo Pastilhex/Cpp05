@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:01:20 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/11 15:19:06 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/11 15:48:39 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ void Bureaucrat::signForm(AForm &formObj) {
 }
 
 void Bureaucrat::executeForm(AForm const & form) const {
-	form.executeAction(*this);
+	form.execute(*this);
 }
