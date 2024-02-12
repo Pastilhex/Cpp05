@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:01:20 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/11 15:48:39 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/12 17:38:06 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int Bureaucrat::getGrade() const {
 }
 
 const char * Bureaucrat::GradeTooHighException::what() const throw() {
-	return ("Grade to high!");
+	return ("Exeption: Bureaucrat grade to high!");
 }
 
 const char * Bureaucrat::GradeTooLowException::what() const throw() {
-	return ("Grade to low!");
+	return ("Exeption: Bureaucrat grade to low!");
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& original) : _name(original._name), _grade(original._grade) {}
@@ -64,12 +64,16 @@ void Bureaucrat::decGrade() {
 }
 
 void Bureaucrat::signForm(AForm &formObj) {
-	if (formObj.getIsSigned())
-		std::cout << this->getName() << " signed " << formObj.getName() << std::endl;
+	if (!formObj.getIsSigned())
+	{	
+		formObj.beSigned(*this);
+		std::cout << this->getName() << " signed " << formObj.getName() << std::endl;	
+	}
 	else
 		std::cout << this->getName() << " couldn't sign " << formObj.getName() << " because grade it's to low!" << std::endl;
 }
 
 void Bureaucrat::executeForm(AForm const & form) const {
 	form.execute(*this);
+	std::cout << this->getName() << " executed " <<  form.getName() << std::endl;
 }

@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 11:02:32 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/11 17:55:33 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/12 16:15:29 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
+
+RobotomyRequestForm::RobotomyRequestForm() : AForm("Jarbas", 72, 45) {
+	this->_target = "default";
+}
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Jarbas", 72, 45) {
 	this->_target = target;
@@ -18,9 +22,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Jarbas", 7
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & original) : AForm() {
-    *this = original;
-}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & original) : AForm(original), _target(original._target) {}
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm & obj) {
     if (this != &obj)
@@ -29,11 +31,18 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm & 
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
-    if (this->getIsSigned())
-    {
-        if (executor.getGrade() >= this->getGradeToSign())
-            std::cout << "Brrzzz... Brzzz... " << this->_target << " has been robotomized successfully 50% of the time." << std::endl;
-        else
-			std::cout << "Robotomy failed!" << std::endl;
-    }
+	if (this->getIsSigned())
+	{
+		if (executor.getGrade() <= this->getGradeToExecute()) 
+		{
+			if (rand() % 2) 
+				std::cout << executor.getName() << " has been robotomized successfully." << std::endl;
+			else 
+				std::cout <<  executor.getName() << " has not been robotomized successfully." << std::endl;
+		}
+		else
+			throw GradeTooLowException();
+	}
+	else
+		throw FormNotSignedException();
 }

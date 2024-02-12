@@ -3,35 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 11:02:04 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/11 17:19:31 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/12 17:45:01 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target)  : AForm("Shrubbery", 145, 137) {
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery", 145, 137) {
+	this->_target = "default";
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubbery", 145, 137) {
 	this->_target = target;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& original) : AForm(original), _target(original._target) {}
+
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& obj) {
+	if (this != &obj)
+		this->_target = obj._target;
+	return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& original) : AForm() {
-	*this = original;
-}
-
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& obj) {
-	if (this != &obj)
-		*this = obj;
-	return *this;
-}
-
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	if (this->getIsSigned())
 	{
-		if (executor.getGrade() >= this->getGradeToSign())
+		if (executor.getGrade() <= this->getGradeToExecute())
 		{
 			std::ofstream thisFile(this->_target.c_str());
 			if (thisFile.is_open())
@@ -50,9 +52,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 			}
 			else
 				std::cout << "Error opening file!" << std::endl;
-			std::cout << executor.getName() << " executed " <<  this->getName() << std::endl;
 		}
 		else
 			throw GradeTooLowException();
 	}
+	else
+		throw FormNotSignedException();
 }

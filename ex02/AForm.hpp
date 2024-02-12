@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:37:30 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/11 16:08:36 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/12 15:34:50 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define _AFORM_
 
 #include "Bureaucrat.hpp"
-#include <iostream>
-#include <fstream>
-#include <string>
 
 class AForm {
 private:
@@ -27,12 +24,18 @@ private:
 public:
 	AForm();
 	AForm(std::string name, const int _gradeToSign, const int _gradeToExecute);
+	AForm& operator=(const AForm &);
+	AForm(const AForm &);
 	~AForm();
 	class GradeTooHighException : public std::exception {
 		public:
 			virtual const char* what() const throw();	
 	};
 	class GradeTooLowException : public std::exception {
+		public:
+			virtual const char* what() const throw();
+	};
+	class FormNotSignedException : public std::exception {
 		public:
 			virtual const char* what() const throw();
 	};

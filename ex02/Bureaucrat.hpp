@@ -6,16 +6,19 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:01:17 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/12 11:30:30 by ialves-m         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:05:10 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _BUREAUCRAT_
 # define _BUREAUCRAT_
 
+#include <cstdlib>
 #include <exception>
+#include <fstream>
 #include <iostream>
 #include <string>
+#include <ctime>
 
 class AForm;
 
