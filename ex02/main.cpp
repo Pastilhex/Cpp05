@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:00:49 by ialves-m          #+#    #+#             */
-/*   Updated: 2024/02/11 18:25:05 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/12 11:34:51 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@ int main(void)
 	try
 	{
 		Bureaucrat obj("Ivo", 146);
-		ShrubberyCreationForm shrubberyForm("Shrubbery_House");
+		ShrubberyCreationForm shrubberyForm("Home");
 		RobotomyRequestForm robotForm("Jarbas");
 		PresidentialPardonForm pardonForm("Joao");
 
-		pardonForm.beSigned(obj);
-		obj.signForm(pardonForm);
-		pardonForm.execute(obj);
+		// pardonForm.beSigned(obj);
+		// obj.signForm(pardonForm);
+		// pardonForm.execute(obj);
+		// obj.executeForm(pardonForm);
 
-		robotForm.beSigned(obj);
-		obj.signForm(robotForm);
-		robotForm.execute(obj);
+		// robotForm.beSigned(obj);
+		// obj.signForm(robotForm);
+		// robotForm.execute(obj);
 
 		shrubberyForm.beSigned(obj);
 		obj.signForm(shrubberyForm);
